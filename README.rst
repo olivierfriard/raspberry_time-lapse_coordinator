@@ -26,7 +26,7 @@ Setting the workers
 
 
 The Python scripts in the src/worker directory (bluetooth_worker.py and config.py) must be copied on the Raspberry Pi devices.
-You can create the /home/pi/projects/time_lapse directory and copy these scripts into.
+You can create the ~/home/pi/projects/time_lapse~ directory and copy these scripts into.
 
 
 
