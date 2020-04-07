@@ -89,6 +89,38 @@ In order to install the Python dependencies the best practice is to create a new
    source timelapse_worker/bin/activate
    python3 -m pip install pyqt5 pybluez
 
+Setting the coordinator program
+............................................
+
+The list of the Raspberry Pi devices must be updated in the config_coordinator.py file.
+
+Every Raspberry Pi device in the list must have an id. The best practice is to use the Raspberry Pi hostname.
+
+.. image:: images/hostname_pi.png
+   :alt: Raspberry Pi hostname
+
+The hostname can be changed with the following command:
+
+.. code-block:: text
+
+    sudo nano /etc/hostname
+
+The chnage will take effect after rebooting your device.
+
+
+Example of config_coordinator.py file:
+
+
+.. code-block:: text
+
+    # raspberries list with bluetooth MAC address
+    RASPBERRY_LIST  = {
+        "rasp00": "b8:27:eb:0b:06:8c",
+        "rasp01": "b8:27:eb:42:d2:32",
+    }
+
+
+
 
 Launching the program on the coordinator
 .............................................
@@ -114,6 +146,19 @@ In this case 2 workers (rasp00 and rasp01) are waiting to receive commands from 
 If the **Sync time** button is not green the time on the Raspberry Pi device is not set correctly.
 You can click the button to synchronize the time between the coordinator and the worker
 (the coordinator time will be sent to the Rasberry Pi).
+
+
+Setting a time-lapse experiment
+===============================================
+
+
+Launch the Raspberry Pi devices.
+
+Launch the coordinator program.
+
+
+
+
 
 
 
