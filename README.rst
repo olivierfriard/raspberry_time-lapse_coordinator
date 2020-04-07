@@ -14,7 +14,7 @@ No wired/wireless connection is required.
 Installation
 =============================
 
-You have to install some packages on the coordinator and workers:
+You have to install some packages on the laptop/desktop (coordinator) and the Raspberry Pi devices (workers):
 
 .. code-block:: text
 
@@ -77,3 +77,26 @@ The Python scripts in the src/coordinator directory (bluetooth_coordinator.py an
 You can create a dedicated directory like /home/USERNAME/projects/time_lapse and copy these scripts into.
 
 
+Creating a Python virtual environment
+............................................
+
+
+In order to install the Python dependencies the best practice is to create a new Python virtual environment:
+
+.. code-block:: text
+
+   python3 -m venv timelapse_worker
+   source timelapse_worker/bin/activate
+   python3 -m pip install pyqt5 pybluez
+
+
+Launching the program on the coordinator
+.............................................
+
+The coordinator program can be launched with the following commands:
+
+.. code-block:: text
+
+    source timelapse_worker/bin/activate
+    cd /home/USERNAME/projects/time_lapse
+    python3 bluetooth_coordinator.py
