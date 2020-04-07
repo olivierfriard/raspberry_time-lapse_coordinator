@@ -102,8 +102,19 @@ The coordinator program can be launched with the following commands:
     python3 bluetooth_coordinator.py
 
 
-You should visualize a graphic interface like this:
+If the workers are running the worker program you should visualize a graphic interface like this:
 
 
 .. image:: images/coordinator_interface.png
    :alt: Coordinator program interface
+
+
+In this case 2 workers (rasp00 and rasp01) are waiting to receive commands from the coordinator program.
+
+If the **Sync time** button is not green the time on the Raspberry Pi device is not set correctly.
+You can click the button to synchronize the time between the coordinator and the worker
+(the coordinator time will be sent to the Rasberry Pi).
+
+
+
+
