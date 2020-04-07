@@ -105,5 +105,5 @@ The coordinator program can be launched with the following commands:
 You should visualize a graphic interface like this:
 
 
-.. image:: images/behatrix_128px.png
+.. image:: images/coordinator_interface.png
    :alt: Coordinator program interface
