@@ -25,8 +25,8 @@ Setting the workers
 ---------------------------------
 
 
-The Python scripts in the src/worker directory (bluetooth_worker.py and config.py) must be copied on the Raspberry Pi devices.
-You can create the ~/home/pi/projects/time_lapse~ directory and copy these scripts into.
+The Python scripts in the src/worker directory (bluetooth_worker.py, config.py and start_bluetooth_worker.bash) must be copied on the Raspberry Pi devices.
+You can create the /home/pi/projects/time_lapse directory and copy these scripts into.
 
 
 
@@ -55,7 +55,25 @@ The worker program can be launched with the following commands:
     python3 bluetooth_worker.py
 
 
+If the workers do not have a display/keyboard/mouse it can be useful to automatically launch the program when the Raspberry starts:
+For this yu have to modify the /etc/rc.local file:
+
+.. code-block:: text
+
+    sudo nano /etc/rc.local
+
+Add the following line BEFORE the last line (exit 0)
+
+.. code-block:: text
+
+    sudo su - pi /home/pi/projects/time_lapse/start_bluetooth_worker.bash &
 
 
+
+Setting the coordinator
+---------------------------------
+
+The Python scripts in the src/coordinator directory (bluetooth_coordinator.py and config_coordinator.py) must be copied on laptop/desktop.
+You can create a dedicated directory like /home/USERNAME/projects/time_lapse and copy these scripts into.
 
 
