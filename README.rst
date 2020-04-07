@@ -100,3 +100,10 @@ The coordinator program can be launched with the following commands:
     source timelapse_worker/bin/activate
     cd /home/USERNAME/projects/time_lapse
     python3 bluetooth_coordinator.py
+
+
+You should visualize a graphic interface like this:
+
+
+.. image:: images/behatrix_128px.png
+   :alt: Coordinator program interface
