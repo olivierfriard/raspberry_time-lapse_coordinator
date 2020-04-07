@@ -1,6 +1,5 @@
-# Raspberry Time-lapse coordinator by bluetooth
+# Raspberry Pi Time-lapse coordinator
 
-The aim of the in this repository is the allow to control many Rasberry Pi devices to 
 
 raspberry_time-lapse_coordinator is a framework to organize time-lapse experiments with Raspberry Pi devices.
 

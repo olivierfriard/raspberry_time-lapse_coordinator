@@ -3,9 +3,9 @@
 
 PICTURES_DIR = "/home/pi/projects/time_lapse/pictures"
 
-MASTER_BLUETOOTH_MAC = "74:E5:43:90:AB:9F"
+MASTER_BLUETOOTH_MAC = "XX:XX:XX:XX:XX:XX"
 
-GDRIVE_PICTURES = "18Eh5q6dWGGFQlsrK0bSl1UzQQLV-dLN6"
+
 
 
 
