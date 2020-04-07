@@ -99,13 +99,27 @@ Every Raspberry Pi device in the list must have an id. The best practice is to u
 .. image:: images/hostname_pi.png
    :alt: Raspberry Pi hostname
 
-The hostname can be changed with the following command:
+The Raspberry Pi hostname can be changed with the following command:
 
 .. code-block:: text
 
     sudo nano /etc/hostname
 
-The chnage will take effect after rebooting your device.
+The change will take effect after rebooting your device.
+
+
+Every Raspberry Pi device in the list must have its bluetooth MAC Address.
+You can obtain the Raspberry Pi bluetooth MAC address with the following command:
+
+.. code-block:: text
+
+    hcitool dev
+
+
+.. image:: images/bluetooth_address.png
+   :alt: Raspberry Pi bluetooth address
+
+
 
 
 Example of config_coordinator.py file:
