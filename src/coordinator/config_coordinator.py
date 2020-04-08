@@ -3,8 +3,8 @@
 # raspberries list with bluetooth MAC address
 
 RASPBERRY_LIST  = {
-    "rasp00": "b8:27:eb:0b:06:8c",
-    "rasp01": "b8:27:eb:42:d2:32"
+    "rasp00": "b8:27:eb:0b:06:xx",
+    "rasp01": "b8:27:eb:42:d2:xx"
 }
 
 # maximum time difference between coordinator and raspberries (in seconds)

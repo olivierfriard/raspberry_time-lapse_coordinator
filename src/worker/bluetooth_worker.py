@@ -122,7 +122,7 @@ class Time_lapse(threading.Thread):
                 log("picture saved {}".format(pict_file_name))
 
                 # os.system("convert {pict_file_name} -resize 128x128 {pict_file_name}.resized128.jpg".format(pict_file_name=pict_file_name))
-                # sendMessageTo(MASTER_BLUETOOTH_MAC, "picture saved {}".format(pathlib.Path(pict_file_name).name))
+                # sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, "picture saved {}".format(pathlib.Path(pict_file_name).name))
                 t2 = datetime.datetime.now()
 
             if t1 and t2:
@@ -134,13 +134,13 @@ class Time_lapse(threading.Thread):
 
             if datetime.datetime.now().isoformat() > self.kwargs["end"]:
                 log("Time lapse finished: time out of time lapse interval")
-                sendMessageTo(MASTER_BLUETOOTH_MAC, "Time lapse finished: time out of time lapse interval")
+                sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, "Time lapse finished: time out of time lapse interval")
                 remove_time_lapse_info()
                 return
 
             if self.finish:
                 log("Time lapse finished")
-                sendMessageTo(MASTER_BLUETOOTH_MAC, "Time lapse finished")
+                sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, "Time lapse finished")
                 remove_time_lapse_info()
                 return
 
@@ -235,7 +235,7 @@ while True:
         nb_pict = len(list(p.glob("*.jpg")))
         msg_tl = os.path.isfile("time_lapse_info.txt")
 
-        r, msg = sendMessageTo(MASTER_BLUETOOTH_MAC,
+        r, msg = sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS,
                                 {"msg": "status",
                                  "status": "OK",
                                  "local time": date_iso().replace("_", " "),
@@ -256,27 +256,27 @@ while True:
 
 
     if msg == "get_log":
-        r, msg = sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": open(HOSTNAME + ".log", "r").read()})
+        r, msg = sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": open(HOSTNAME + ".log", "r").read()})
         log(f"Error during log file transmission: {msg}" if r else "log file transmitted")
 
 
     if "one_picture*" in msg:
 
         if not CAMERA_ENABLED:
-            sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": f"The camera is not enabled on this raspberry"})
+            sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": f"The camera is not enabled on this raspberry"})
             continue
         try:
             _, width_height = msg.split("*")
             w, h = [int(x) for x in width_height.split("x")]
         except:
             log(f"one picture wrong parameters: {msg}")
-            sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": f"one picture wrong parameters {msg}"})
+            sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": f"one picture wrong parameters {msg}"})
             continue
 
         r, return_msg = take_one_picture(HOSTNAME, PICTURES_DIR, width=w, height=h)
         if r:
             log(f"error taking one picture: {return_msg}")
-            sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": f"error taking one picture: {return_msg}"})
+            sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": f"error taking one picture: {return_msg}"})
 
         else:
             log(f"picture saved in {return_msg}")
@@ -284,18 +284,18 @@ while True:
             msg = {"picture": {"file_name": pathlib.Path(return_msg).name}}
             msg["picture"]["file_content"] = open(return_msg, "rb").read()
 
-            r, return_msg =sendMessageTo(MASTER_BLUETOOTH_MAC, msg)
+            r, return_msg =sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, msg)
 
             log(f"Error: {return_msg}" if r else "image sent")
 
 
     if "time_lapse|" in msg:
         if not CAMERA_ENABLED:
-            sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": f"The camera is not enabled on this raspberry"})
+            sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": f"The camera is not enabled on this raspberry"})
             continue
         if os.path.isfile("time_lapse_info.txt"):
             log("time lapse is already running")
-            sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": "Time lapse is already running"})
+            sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": "Time lapse is already running"})
             continue
 
         try:
@@ -303,12 +303,12 @@ while True:
             cmd_json = json.loads(cmd_str)
         except:
             log(f"Error in time lapse parameters: {msg}")
-            sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": f'Error in time lapse parameters {msg}'})
+            sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": f'Error in time lapse parameters {msg}'})
             continue
 
         if cmd_json["start"] >= cmd_json["end"]:
             log(f'Error in time lapse parameters: from {cmd_json["start"]} to {cmd_json["end"]}')
-            sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": f'Error in time lapse parameters: from {cmd_json["start"]} to {cmd_json["end"]}'})
+            sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": f'Error in time lapse parameters: from {cmd_json["start"]} to {cmd_json["end"]}'})
             continue
 
         log((f'start time lapse for exp {cmd_json["prefix"]} every {cmd_json["interval"]} s '
@@ -324,20 +324,20 @@ while True:
                                     )
 
         log("time lapse started")
-        sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": "Time lapse started"})
+        sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": "Time lapse started"})
 
 
     # stop time lapse
     if msg == "stop_time_lapse":
         if not CAMERA_ENABLED:
-            sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": f"The camera is not enabled on this raspberry"})
+            sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": f"The camera is not enabled on this raspberry"})
             continue
         if threading.active_count() > 1:
             if thread_tl_main:
                 thread_tl_main.finish = True
         else:
             log("No time lapse is running")
-            sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": "No time lapse is running"})
+            sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": "No time lapse is running"})
 
 
     if "command***" in msg:
@@ -346,15 +346,15 @@ while True:
             log("execute: " + command)
         except:
             log("error in " + command)
-            sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": f"Error in {command}"})
+            sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": f"Error in {command}"})
             continue
         try:
             output = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE).stdout.read()
 
-            sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": f"command output:\n{output.decode('utf-8')}"})
+            sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": f"command output:\n{output.decode('utf-8')}"})
         except:
             log("error executing  " + command)
-            sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": f"Error executing {command}"})
+            sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": f"Error executing {command}"})
 
 
     if "sync_time*" in msg:
@@ -362,19 +362,20 @@ while True:
             _, date, hour = msg.split("*")
         except:
             log("error in sync time parameters " + msg)
-            sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": f"error in sync time parameters: {msg}"})
+            sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": f"error in sync time parameters: {msg}"})
             continue
         completed = subprocess.run(['sudo', 'timedatectl', 'set-ntp', '0'])
         if completed.returncode:
              log("Error in timedatectl set-ntp 0")
-             sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": "error in timedatectl set-ntp 0 command"})
+             sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": "error in timedatectl set-ntp 0 command"})
              continue
 
-        completed = subprocess.run(['sudo', 'timedatectl','set-time', "{date} {hour}".format(date=date, hour=hour)]) # 2015-11-23 10:11:22
+        completed = subprocess.run(['sudo', 'timedatectl','set-time', f"{date} {hour}"])
 
         if completed.returncode:
              log(f"Error in timedatectl set-time '{date} {hour}'")
-             sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": "time NOT synchronized"})
+             sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS, {"msg": "time NOT synchronized"})
         else:
              log(f"time synchronized {date} {hour}")
-             sendMessageTo(MASTER_BLUETOOTH_MAC, {"msg": f'time synchronized\nRaspberry time is now {date_iso().replace("_"," ")}'})
+             sendMessageTo(COORDINATOR_BLUETOOTH_ADDRESS,
+                           {"msg": f'time synchronized\nRaspberry time is now {date_iso().replace("_"," ")}'})

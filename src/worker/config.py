@@ -3,7 +3,7 @@
 
 PICTURES_DIR = "/home/pi/projects/time_lapse/pictures"
 
-MASTER_BLUETOOTH_MAC = "XX:XX:XX:XX:XX:XX"
+COORDINATOR_BLUETOOTH_ADDRESS = "XX:XX:XX:XX:XX:XX"
 
 
 
