@@ -60,8 +60,8 @@ In order to install the Python dependencies the best practice is to create a new
 
 .. code-block:: text
 
-   python3 -m venv timelapse_worker
-   source timelapse_worker/bin/activate
+   python3 -m venv /home/pi/timelapse_worker_venv
+   source /home/pi/timelapse_worker_venv/bin/activate
    python3 -m pip install pybluez
 
 
@@ -72,7 +72,7 @@ The worker program can be launched with the following commands:
 
 .. code-block:: text
 
-    source timelapse_worker/bin/activate
+    source /home/pi/timelapse_worker_venv/bin/activate
     cd /home/pi/projects/time_lapse
     python3 bluetooth_worker.py
 
@@ -107,8 +107,8 @@ In order to install the Python dependencies the best practice is to create a new
 
 .. code-block:: text
 
-   python3 -m venv timelapse_worker
-   source timelapse_worker/bin/activate
+   python3 -m venv timelapse_coordinator_venv
+   source timelapse_coordinator_venv/bin/activate
    python3 -m pip install pyqt5 pybluez
 
 Setting the coordinator program
@@ -165,7 +165,7 @@ The coordinator program can be launched with the following commands:
 
 .. code-block:: text
 
-    source timelapse_worker/bin/activate
+    source timelapse_coordinator_venv/bin/activate
     cd /home/USERNAME/projects/time_lapse
     python3 bluetooth_coordinator.py
 
@@ -184,13 +184,23 @@ You can click the button to synchronize the time between the coordinator and the
 (the coordinator time will be sent to the Rasberry Pi).
 
 
-Setting a time-lapse experiment
+Setting a time-lapse photography experiment
 ===============================================
 
 
 Launch the Raspberry Pi devices.
 
-Launch the coordinator program.
+Launch the coordinator program on the laptop/desktop.
+
+* Synchronize the time between coordinator and workers
+
+* Check the frame of the Camera module.
+  Use the **Take one picture** button and check the picture on the dedicated directory on the laptop/desktop.
+
+* Set the **start**, **End** and the **Interval** (in seconds) parameters.
+
+* Press the **Start time lapse** button.
+
 
 
 
