@@ -195,6 +195,8 @@ Launch the coordinator program on the laptop/desktop.
 * Synchronize the time between coordinator and workers using the **Sync time** button.
   The button should become green.
 
+* Choose the resolution of the time-lapse pictures.
+
 * Check the frame of the camera.
   Use the **Take one picture** button and check the picture on the dedicated directory on the laptop/desktop.
   The directory were pictures are saved on laptop/desktop is defined with the **RECEIVED_FILES_DIR** parameter
