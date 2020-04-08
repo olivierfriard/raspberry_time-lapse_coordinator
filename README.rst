@@ -204,8 +204,9 @@ Launch the coordinator program on the laptop/desktop.
 
 * Press the **Start time lapse** button.
 
+
 The pictures from the time-lapse are saved in the worker directory defined in the **PICTURES_DIR** parameter
-  in the **config.py** file
+in the **config.py** file
 
 
 
