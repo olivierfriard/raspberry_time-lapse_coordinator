@@ -6,13 +6,32 @@ Raspberry Pi Time-lapse coordinator
 :Author: Olivier Friard
 
 The raspberry_time-lapse_coordinator is a framework to organize time-lapse experiments with Raspberry Pi devices.
-raspberry_time-lapse_coordinator is developed in Python3.
 
 The Raspberry Pi devices (workers) are controlled by a laptop/desktop (coordinator) using the bluetooth protocol.
-No wired/wireless connection is required.
+No wired/wireless TCP/IP connection is required.
+
+The raspberry_time-lapse_coordinator framework is developed in Python3 and have few dependencies (pybluez and PyQt5).
+
+
 
 Installation
 =============================
+
+Before installation you must pair all your Raspberry Pi devices with the laptop/desktop:
+
+* Make your Raspberry Pi device discoverable
+
+.. image:: images/rasp_make_discoverable.png
+   :alt: Make your Raspberry Pi device discoverable
+
+* Search bluetooth devices with your laptop/desktop 
+
+* Ask to pair each Raspberry Pi device. You will have to accept the pairing on your Raspberry Pi device.
+
+* Set Trust to each Raspberry Pi device on your laptop/desktop
+
+
+
 
 You have to install some packages on the laptop/desktop (coordinator) and the Raspberry Pi devices (workers):
 
