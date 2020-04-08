@@ -5,7 +5,7 @@ Raspberry Pi Time-lapse coordinator
 
 :Author: Olivier Friard
 
-The raspberry_time-lapse_coordinator is a framework to organize time-lapse experiments with Raspberry Pi devices.
+The raspberry_time-lapse_coordinator is a framework to organize time-lapse photography experiments with Raspberry Pi devices.
 
 The Raspberry Pi devices (workers) are controlled by a laptop/desktop (coordinator) using the bluetooth protocol.
 No wired/wireless TCP/IP connection is required.
