@@ -192,14 +192,20 @@ Launch the Raspberry Pi devices.
 
 Launch the coordinator program on the laptop/desktop.
 
-* Synchronize the time between coordinator and workers
+* Synchronize the time between coordinator and workers using the **Sync time** button.
+  The button should become green.
 
-* Check the frame of the Camera module.
+* Check the frame of the camera.
   Use the **Take one picture** button and check the picture on the dedicated directory on the laptop/desktop.
+  The directory were pictures are saved on laptop/desktop is defined with the **RECEIVED_FILES_DIR** parameter
+  in the **config_coordinator.py** file
 
 * Set the **start**, **End** and the **Interval** (in seconds) parameters.
 
 * Press the **Start time lapse** button.
+
+The pictures from the time-lapse are saved in the worker directory defined in the **PICTURES_DIR** parameter
+  in the **config.py** file
 
 
 
