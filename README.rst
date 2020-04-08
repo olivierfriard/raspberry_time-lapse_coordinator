@@ -12,6 +12,8 @@ No wired/wireless TCP/IP connection is required.
 
 The raspberry_time-lapse_coordinator framework is developed in Python3 and have few dependencies (pybluez and PyQt5).
 
+You must have almost one Raspberry Pi device with a Camera module installed and a laptop/desktop computer
+(or another Rasberry Pi device can be used in replacement).
 
 
 Installation
@@ -19,7 +21,7 @@ Installation
 
 Before installation you must pair all your Raspberry Pi devices with the laptop/desktop:
 
-* Make your Raspberry Pi device discoverable
+* Make your Raspberry Pi device discoverable. The bluetooth icon will blink green/blue.
 
 .. image:: images/rasp_make_discoverable.png
    :alt: Make your Raspberry Pi device discoverable
@@ -40,8 +42,8 @@ You have to install some packages on the laptop/desktop (coordinator) and the Ra
     sudo apt install bluetooth libbluetooth-dev
 
 
-Setting the workers
----------------------------------
+Setting the workers (the Raspberry Pi devices)
+-------------------------------------------------------
 
 
 The Python scripts in the src/worker directory (bluetooth_worker.py, config.py and start_bluetooth_worker.bash) must be copied on the Raspberry Pi devices.
@@ -89,8 +91,8 @@ Add the following line BEFORE the last line (exit 0)
 
 
 
-Setting the coordinator
----------------------------------
+Setting the coordinator (the laptop/desktop)
+-------------------------------------------------------
 
 The Python scripts in the src/coordinator directory (bluetooth_coordinator.py and config_coordinator.py) must be copied on laptop/desktop.
 You can create a dedicated directory like /home/USERNAME/projects/time_lapse and copy these scripts into.
