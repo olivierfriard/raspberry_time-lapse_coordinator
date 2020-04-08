@@ -33,6 +33,7 @@ Before installation you must pair all your Raspberry Pi devices with the laptop/
 * Set Trust to each Raspberry Pi device on your laptop/desktop
 
 
+**Software installation**
 
 
 You have to install some packages on the laptop/desktop (coordinator) and the Raspberry Pi devices (workers):
