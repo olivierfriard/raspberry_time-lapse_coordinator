@@ -209,6 +209,17 @@ The pictures from the time-lapse are saved in the worker directory defined in th
 in the **config.py** file
 
 
+Various
+=============================================
+
+
+Send command
+--------------------------
+
+This button allows you to send a bash command to the workers. For example if you want to turn off a worker 
+send the **sudo shutdown now** command.
+
+
 
 
 
