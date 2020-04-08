@@ -77,13 +77,13 @@ The worker program can be launched with the following commands:
 
 
 If the workers do not have a display/keyboard/mouse it can be useful to automatically launch the program when the Raspberry starts:
-For this yu have to modify the /etc/rc.local file:
+For this you have to modify the /etc/rc.local file:
 
 .. code-block:: text
 
     sudo nano /etc/rc.local
 
-Add the following line BEFORE the last line (exit 0)
+Add the following line **BEFORE** the last line (exit 0)
 
 .. code-block:: text
 
