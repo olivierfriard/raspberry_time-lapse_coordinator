@@ -170,7 +170,7 @@ The coordinator program can be launched with the following commands:
     python3 bluetooth_coordinator.py
 
 
-If the workers are running the worker program you should visualize a graphic interface like this:
+If the workers are running the worker program you should visualize a graphic interface on the laptop/desktop like this:
 
 
 .. image:: images/coordinator_interface.png
